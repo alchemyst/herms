@@ -1,0 +1,1272 @@
+\documentclass[12pt,a4paper,parskip=full]{report}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage[toc,page]{appendix}
+
+\usepackage{fullpage}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage[round]{natbib}
+
+\usepackage{float}
+
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{pbox}
+
+\usepackage{url}			
+\urlstyle{same}
+
+\usepackage{graphicx}
+\usepackage[space]{grffile}
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage[withpage]{acronym}
+
+\renewcommand\bibname{References}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\author{Schalk van Heerden}
+\title{Micro-brewery control strategy for the Raspberry Pi a using HERMS}
+\begin{document}
+%\garamond
+\doublespacing
+\thispagestyle{empty}
+
+\vfill
+\begin{center}
+{\Huge \bf Micro-brewery control strategy for the Raspberry Pi using a HERMS\\}
+\vspace{12mm}
+{\LARGE \bf By Schalk van Heerden \\and Carl Sandrock\\}
+\vspace{8mm}
+\includegraphics[width=0.7\linewidth]{./logo_process_700}
+\vspace{6mm} \linebreak
+{\Large \bf Heerden Process Engineering \\ South Africa \\ Version 0.1 \\ 2015 \\}
+\end{center}
+\vfill
+
+\clearpage
+
+\thispagestyle{empty}
+
+This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+
+Should you wish to redistribute verbatim copies of this work, attribute me as follow: {\it This material was created by Schalk van Heerden and published freely under a Creative Commons Attribution license at \url{http://heerden.co.za}.}
+
+Should you wish to redistribute revised or remixed versions of this work, attribute me as follow: {\it This material is based on original writing by Schalk van Heerden, which was published freely under a Creative Commons Attribution license at \url{http://heerden.co.za}.}
+
+If you would like to attribute me differently, contact me.
+
+\clearpage
+
+\singlespacing
+\setcounter{page}{1}
+\pagenumbering{roman}
+
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+``Are you working on your Cherry Pie again,'' she asks me. I was indeed busy configuring the Raspberry Pi to control my new fully automated brewery. My days of using malt extract and stirring a pot on the stove was over. I wanted to be a true artist and start all-grain brewing. 
+
+A \ac{HERMS} was chosen as the perfect process to implement. For most home brewers, controlling the temperature is all that is needed, but I wanted to control as many variables as possible.
+
+A control philosophy was developed for 12 steps in the \ac{HERMS} stage. The fermentation stage required 5 steps, while a final clean-in-place stage required 11 steps. To achieve this, 28 inputs (temperature, level, flow) and outputs (pumps, valves, heating elements, motors) was needed.
+
+The Raspberry Pi is a microcomputer, running the Linux operating system. It is low cost and supports other low cost instruments. A circuit board was designed to facilitate the connection between the Raspberry Pi and instruments. A decentralised control strategy with \ac{PID} control, and the timing sequence  for  switching the equipment, was executed with Python code. It was also setup to serve as a control panel that could be accessed remotely over the internet.  All the major electrical components were safely enclosed in a control box.
+
+Magnetically coupled pumps where selected to drive the process liquids and solenoid valves controlled the flow. Three stainless steel vessels were used and equipped with fittings to connect to the silicon piping system. A custom actuated control valve was also designed.
+
+There are several components still missing in the design and an advanced process control strategy will be considered for the future.
+
+This is how the Cherry Pie Brewery was born.
+
+\chapter*{Acknowledgment}
+\addcontentsline{toc}{chapter}{Acknowledgment}
+
+Without the wealth of knowledge available in the home brewing and electronic community, this design guideline would not have been possible.
+
+\newpage
+
+\addcontentsline{toc}{chapter}{Contents}
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+
+\chapter*{List of Abbreviations}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+
+\begin{acronym}[HERMS]
+\acro{AC}{Alternating Current}
+\acro{AX}{Auxiliary equipment}
+\acro{BIAB}{Brew An A Bag}
+\acro{CP}{Pump}
+\acro{CIP}{Clean In Place}
+\acro{CV}{Control Valve}
+\acro{DC}{Direct Current}
+\acro{FER}{Fermenter}
+\acro{GFI}{Ground Fault Interrupter}
+\acro{GPIO}{General Purpose Input Out}
+\acro{HDPE}{High-density Polyethylene}
+\acro{HE}{Heating Element}
+\acro{HERMS}{Heat Exchange Recirculating Mash System}
+\acro{HLT}{Hot Liquor Tank}
+\acro{HX}{Heat Exchanger}
+\acro{IMC}{Internal Model Control}
+\acro{IP}{Internet Protocol}
+\acro{KET}{Kettle}
+\acro{LE}{Level Sensor}
+\acro{MLT}{Mash Lauter Tun}
+\acro{MPC}{Model Predictive Control}
+\acro{MR}{Motor}
+\acro{OP}{Control Module}
+\acro{PaID}[P\&ID]{Piping and Instrumentation Diagram}
+\acro{PID}{Proportional Integral Differential}
+\acro{PLC}{Programmable Logic Controller}
+\acro{PV}{Process Variable}
+\acro{RIMS}{Recirculating Infusion Mash System}
+\acro{SP}{Setpoint}
+\acro{SS}{Stainless Steel}
+\acro{SSL}{Secure Sockets Layer}
+\acro{SSR}{Solid State Relay}
+\acro{TE}{Thermocouple}
+\acro{TK}{Tank}
+\acro{VNC}{Virtual Network Computing}
+\end{acronym}
+
+\pagenumbering{arabic}
+
+\chapter{Introduction}
+
+According to \cite{History2014}, the technological, social, and economical development of the society is linked to mankind's desire to brew more beer. The beer brewing process dates back thousands of years and every culture has their own refined version. In simplified terms, beer is produced from four main ingredients: a grain (primarily barley), hops, yeast and water; water is the liquid medium. Sugar is extracted from the grain and hops adds to the bitter taste. Yeast is added to this mixture and left to ferment at a suitable temperature.
+
+Commercially, beer continues to be a booming industry. \cite{ReportLinker2014} projects that by 2015, 183 million litres will be produced, which will make the industry worth \$523.5 billion. A sector of this industry that is also gaining market share annually, is craft or micro brewing. They are categorised by traditional brewing processes and independently owned. The main problem that craft brewers experience is producing a consistent brand of beer. This work will implement a control strategy, to minimise this problem.
+
+The rise in popularity of the Raspberry Pi microcomputer cannot be claimed by beer, but this computer, and similar inexpensive instruments will be used to implement the control strategy for a fully automated micro-brewery. The production capacity will be 20 litres per batch.
+
+In order to explain the control strategy in more detail, the control philosophy will firstly be explain, with specific emphasis on sugar extraction, fermentation and the cleaning process. Next, the design of the mechanical, electrical and software systems, as well as the process control will be discussed. The design guideline will conclude with a discussion on recommendations for future improvements.
+
+\chapter{Process description}
+
+This chapter will give a general description of the brewing process, with a focus on the sugar extraction process.
+
+It is beyond the scope to describe the scientific details of every brewing process and therefore resources such as \citet{Palmer2004} should be consulted.
+
+The brewery will use batch processes and all its steps will be fully automated. Once raw materials are added, the controller will take charge of the whole operation until the final product (beer) is in a keg. Manual steps, like adding the raw material at specific time intervals, are however still required.
+
+\section{Sugar extraction}
+
+Get a new name for this section.
+
+Heat is required in a \ac{MLT} vessel to covert the grain to sugar, in a process called mashing; the product is called the wort. It is essential to control the temperature of this process to ensure that the correct enzymes are activated, which will release the required sugars. There are several methods to achieve optimal temperature control in a micro-brewery process. The two prominent processes are \ac{RIMS} and \acf{HERMS}. In both processes, the wort is recirculated with a pump through the \ac{MLT} and an heat exchange device. \ac{RIMS} uses an electric heater inline with the recirculation system. \ac{HERMS} uses a heat exchange coil that is submerged in a \ac{HLT}. The wort is then recirculated through the coil. This design will use a \ac{HERMS}, as it is more energy and equipment efficient \citep{BrewersFriend2009}.
+
+A piping and instrumentation diagram of the brewery is given in Figure \ref{fig:main_pid}.
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-100-1 Cherry Pie Brewery P_ID}
+\caption{Brewery \ac{PaID}}
+\label{fig:main_pid}
+\end{figure}
+
+The third vessel used is the \ac{KET}. It is used to preheat the water for mashing and finally to boil the wort. The hops is also added in this vessel.
+
+If the production capacity of the brewery is 1, the ideal ration of vessel volumes for the \ac{HLT}, \ac{MLT} and \ac{KET} is 2:0.8:1.5 \citep{Electric2014}.
+
+\section{Fermentation}
+
+
+
+\section{Auxiliaries}
+
+
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-100-2 Auxiliaries P_ID}
+\caption{Brewery \ac{PaID}}
+\label{fig:aux_pid}
+\end{figure}
+
+In the next chapter, the complete control philosophy will be given for the \ac{HERMS}, fermentation process and a \ac{CIP} process.
+
+\chapter{Control philosophy} \label{sec:philosophy}
+
+The control philosophy will identify the important control objectives in every step and the instruments that is required. The three major process steps are:
+
+\begin{enumerate}
+\item \ac{HERMS}
+\item Fermentation
+\item \ac{CIP}
+\end{enumerate}
+
+On the diagrams the key for all the brewing steps are as follow:
+
+Red: instrumentation
+
+Blue: cold water
+
+Orange: wort
+
+Brown: raw material
+
+Purple: cleaning agent
+
+Asterisk ($^*$): manual step
+
+\newpage
+
+\section{HERMS}
+
+There are twelve process steps for the extraction of sugar and preparation of the wort:
+
+\begin{enumerate}
+\item Open cold water tap$^*$
+\item Fill \ac{HLT} with cold water
+\item Fill \ac{KET} with cold water
+\item Heat process water
+\item Fill \ac{MLT} from \ac{KET}
+\item Add grain$^*$
+\item Mash
+\item Mash out
+\item Sparge
+\item Boil wort
+\item Add hops$^*$
+\item Chill wort and fill \ac{FER}
+\end{enumerate}
+
+A summary of all these processes is given in Table \ref{tab:step1}.
+
+\begin{table}[h!]
+\caption{Step 1 sugar extraction process summary}
+\begin{tabular}{c}
+\includegraphics[width=1\linewidth]{./ProcessStep1}
+\end{tabular} 
+\label{tab:step1}
+\end{table}
+
+\newpage
+
+\subsection{Open cold water tap}
+
+\begin{table}[h!]
+\centering
+\caption{Step 1-1 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{HLT} element & 01HE001 & OFF & - & - \\
+\ac{KET} element & 01HE002 & OFF & - & - \\
+Pump 1 & 01CP001 & OFF & - & - \\
+Pump 2 & 01CP002 & OFF & - & - \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-101-1 Step 1-1}
+\caption{Open cold water tap}
+\label{fig:step1-1}
+\end{figure}
+
+\newpage
+
+\subsection{Fill \ac{HLT} with cold water}
+
+\begin{table}[h!]
+\centering
+\caption{Step 1-2 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{HLT} element & 01HE001 & OFF & - & - \\
+\ac{KET} element & 01HE002 & OFF & - & - \\
+Pump 1 & 01CP001 & OFF & - & - \\
+Pump 2 & 01CP002 & OFF & - & - \\
+Valve 9 & 01CV009 & 400mm & Level 1 & 01LE001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-101-2 Step 1-2}
+\caption{Fill \ac{HLT} with cold water}
+\label{fig:step1-2}
+\end{figure}
+
+\newpage
+
+\subsection{Fill \ac{KET} with cold water}
+
+\begin{table}[h!]
+\centering
+\caption{Step 1-3 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{HLT} element & 01HE001 & OFF & - & - \\
+\ac{KET} element & 01HE002 & OFF & - & - \\
+Pump 1 & 01CP001 & OFF & - & - \\
+Pump 2 & 01CP002 & OFF & - & - \\
+Valve 2 & 01CP002 & 200mm & Level 3 & 01LE003 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-101-3 Step 1-3}
+\caption{Fill \ac{KET} with cold water}
+\label{fig:step1-3}
+\end{figure}
+
+\newpage
+
+\subsection{Heat process water}
+
+\begin{table}[h!]
+\centering
+\caption{Step 1-4 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{HLT} element & 01HE001 & $65^oC$ & Temperature 2 & 01TE002 \\
+\ac{KET} element & 01HE002 & $65^oC$ & Temperature 4 & 01TE004 \\
+Pump 1 & 01CP001 & OFF & - & - \\
+Pump 2 & 01CP002 & OFF & - & - \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-101-4 Step 1-4}
+\caption{Fill \ac{MLT} from \ac{KET}}
+\label{fig:step1-4}
+\end{figure}
+
+\newpage
+
+\subsection{Fill \ac{MLT} from \ac{KET}}
+
+\begin{table}[h!]
+\centering
+\caption{Step 1-5 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{HLT} element & 01HE001 & $65^oC$ & Temperature 2 & 01TE002 \\
+\ac{KET} element & 01HE002 & OFF & - & -  \\ 
+Pump 1 & 01CP001 & ON & - & -  \\ 
+Pump 2 & 01CP002 & OFF & - & -  \\ 
+Valve 7 & 01CV009 & 200mm & Level 2 & 01LE002 \\
+\bottomrule
+\end{tabular} 
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-101-5 Step 1-5}
+\caption{Fill \ac{MLT} from \ac{KET}}
+\label{fig:step1-5}
+\end{figure}
+
+\newpage
+
+\subsection{Add grain}
+
+\begin{table}[h!]
+\centering
+\caption{Step 1-6 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{HLT} element & 01HE001 & $65^oC$ & Temperature 2 & 01TE002 \\
+\ac{KET} element & 01HE002 & OFF & - & -  \\ 
+Pump 1 & 01CP001 & ON & - & -  \\ 
+Pump 2 & 01CP002 & OFF & - & -  \\ 
+\bottomrule
+\end{tabular} 
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-101-6 Step 1-6}
+\caption{Add grain}
+\label{fig:step1-6}
+\end{figure}
+
+\newpage
+
+\subsection{Mash}
+
+\begin{table}[h!]
+\centering
+\caption{Step 1-7 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{HLT} element & 01HE001 & $65^oC$ & Temperature 2 & 01TE002 \\
+\ac{KET} element & 01HE002 & OFF & - & -  \\ 
+Pump 1 & 01CP001 & ON & - & -  \\ 
+Pump 2 & 01CP002 & OFF & - & -  \\ 
+\bottomrule
+\end{tabular} 
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-101-7 Step 1-7}
+\caption{Mash}
+\label{fig:step1-7}
+\end{figure}
+
+\newpage
+
+\subsection{Mash out}
+
+\begin{table}[h!]
+\centering
+\caption{Step 1-8 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{HLT} element & 01HE001 & $75^oC$ & Temperature 2 & 01TE002 \\
+\ac{KET} element & 01HE002 & OFF & - & -  \\ 
+Pump 1 & 01CP001 & ON & - & -  \\ 
+Pump 2 & 01CP002 & OFF & - & -  \\ 
+\bottomrule
+\end{tabular} 
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-101-8 Step 1-8}
+\caption{Mash out}
+\label{fig:step1-8}
+\end{figure}
+
+\newpage
+
+\subsection{Sparge}
+
+During this stage all the sugar that was extracted needs to transferred to the from the \ac{MLT} to the \ac{KET}. Heated water (\SI{75}{\celsius}) from the \ac{HLT} is pumped to \ac{MLT}. The water in the \ac{MLT} is needs to be maintained at a specific height. 
+
+A cascade control configuration is used to control the level, with a primary level (01LE002) loop and a secondary flow (01FE002) loop. The two loops will not interfere with each other because the primary loop is slower than the secondary loop, at least 4 times as suggested in the industry \citep[135]{Svrcek2000}.
+
+\begin{table}[h!]
+\centering
+\caption{Step 1-9 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{HLT} element & 01HE001 & \SI{75}{\celsius} & Temperature 2 & 01TE002 \\
+\ac{KET} element & 01HE002 & \SI{75}{\celsius} & Temperature 4 & 01HE002 \\ 
+Pump 1 & 01CP001 & ON & - & -  \\ 
+Pump 2 & 01CP002 & ON & - & -  \\ 
+Valve 10 & 01CP010 & 100 mm & Level 2 & 01LE001 \\ 
+\bottomrule
+\end{tabular} 
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-101-9 Step 1-9}
+\caption{Sparge}
+\label{fig:step1-9}
+\end{figure}
+
+\newpage
+
+\subsection{Boil wort}
+
+\begin{table}[h!]
+\centering
+\caption{Step 1-10 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{HLT} element & 01HE001 & OFF & - & - \\
+\ac{KET} element & 01HE002 & BOIL & Temperature 3 & 01TE003 \\ 
+Pump 1 & 01CP001 & OFF & - & -  \\ 
+Pump 2 & 01CP002 & OFF & - & -  \\ 
+Valve 10 & 01CP010 & 100 mm & Level 2 & 01LE001 \\
+\bottomrule
+\end{tabular} 
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-101-10 Step 1-10}
+\caption{Boil wort}
+\label{fig:step1-10}
+\end{figure}
+
+\newpage
+
+\subsection{Add hops}
+
+\begin{table}[h!]
+\centering
+\caption{Step 1-11 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{HLT} element & 01HE001 & OFF & - & - \\
+\ac{KET} element & 01HE002 & BOIL & Temperature 3 & 01TE003 \\ 
+Pump 1 & 01CP001 & OFF & - & -  \\ 
+Pump 2 & 01CP002 & OFF & - & -  \\ 
+Valve 10 & 01CP010 & 100 mm & Level 2 & 01LE001 \\
+\bottomrule
+\end{tabular} 
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-101-11 Step 1-11}
+\caption{Fill \ac{FER} with wort}
+\label{fig:step1-11}
+\end{figure}
+
+\newpage
+
+\subsection{Chill wort and fill \ac{FER}}
+
+\begin{table}[h!]
+\centering
+\caption{Step 1-12 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{HLT} element & 01HE001 & OFF & - & - \\
+\ac{KET} element & 01HE002 & OFF & - & - \\ 
+Pump 1 & 01CP001 & OFF & - & -  \\ 
+Pump 2 & 01CP002 & ON & - & -  \\
+\bottomrule
+\end{tabular} 
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-101-12 Step 1-12}
+\caption{Chill wort and fill \ac{FER}}
+\label{fig:step1-12}
+\end{figure}
+
+\newpage
+
+\section{Fermentation}
+
+Five process steps are required to ferment the beer in the \ac{FER}:
+
+\begin{enumerate}
+\item Cool wort
+\item Pitch yeast$^*$
+\item Control temperature
+\item Add priming sugar$^*$
+\item Bottle beer$^*$
+\end{enumerate}
+
+\newpage
+
+\subsection{Cool wort}
+
+\begin{table}[h!]
+\centering
+\caption{Step 2-1 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{FER} element & 01HE001 & OFF & Temperature 6 & $20^oC$ \\
+\bottomrule
+\end{tabular} 
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-102-1 Step 2-1}
+\caption{Cool wort}
+\label{fig:step2-1}
+\end{figure}
+
+\newpage
+
+\subsection{Pitch yeast}
+
+\begin{table}[h!]
+\centering
+\caption{Step 2-2 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{FER} element & 01HE001 & $20^oC$ & Temperature 6 & 01TE006 \\
+\bottomrule
+\end{tabular} 
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-102-2 Step 2-2}
+\caption{Pitch yeast}
+\label{fig:step2-2}
+\end{figure}
+
+\newpage
+
+\subsection{Control temperature}
+
+\begin{table}[h!]
+\centering
+\caption{Step 2-3 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{FER} element & 01HE001 & $20^oC$ & Temperature 6 & 01TE006 \\
+\bottomrule
+\end{tabular} 
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-102-3 Step 2-3}
+\caption{Control temperature}
+\label{fig:step2-3}
+\end{figure}
+
+\newpage
+
+\subsection{Add priming sugar}
+
+\begin{table}[h!]
+\centering
+\caption{Step 2-4 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{FER} element & 01HE001 & $20^oC$ & Temperature 6 & 01TE006 \\
+\bottomrule
+\end{tabular} 
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-102-4 Step 2-4}
+\caption{Add priming sugar}
+\label{fig:step2-4}
+\end{figure}
+
+\newpage
+
+\subsection{Bottle beer}
+
+
+\begin{table}[h!]
+\centering
+\caption{Step 2-5 process conditions}
+\begin{tabular}{c c c c c}
+\toprule
+Control variable & Tag & Set point/function & Process variable & Tag \\
+\midrule
+\ac{FER} element & 01HE001 & $20^oC$ & Temperature 6 & 01TE006 \\
+\bottomrule
+\end{tabular} 
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-102-5 Step 2-5}
+\caption{Bottle beer}
+\label{fig:step2-5}
+\end{figure}
+
+\newpage
+
+\section{\ac{CIP}}
+
+At the end of the brewing process, the process equipment needs to be cleaned. This ensures hygienic and sterile conditions for the next brew. An automatic strategy called \ac{CIP} will be used.
+
+\begin{enumerate}
+\item Add \ac{CIP} solution to \ac{HLT}
+\item \ac{CIP} for \ac{HLT} section
+\item Fill \ac{MLT} with \ac{CIP} solution
+\item \ac{CIP} for \ac{MLT} section
+\item Fill \ac{KET} with \ac{CIP} solution from \ac{HLT}
+\item Fill \ac{KET} with \ac{CIP} solution from \ac{MLT}
+\item Reconfigure \ac{HX} and drain piping
+\item \ac{CIP} for \ac{KET} section
+\item \ac{CIP} drain
+\item Open cold water valve
+\item Fill \ac{HLT} with water and restart sequence
+\end{enumerate}
+
+A summary of all these processes is given in Table \ref{tab:step3}.
+
+\begin{table}[h!]
+\caption{Step 3 clean in place process summary}
+\begin{tabular}{c}
+\includegraphics[width=1\linewidth]{./ProcessStep3}
+\end{tabular} 
+\label{tab:step3}
+\end{table}
+
+\newpage
+
+\subsection{Add \ac{CIP} solution to \ac{HLT}}
+
+Bleach is an inexpensive solution. If it is used, it needs to be rinsed from the process in step 3-11.
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-103-1 Step 3-1}
+\caption{Add \ac{CIP} solution to \ac{HLT}}
+\label{fig:step3-1}
+\end{figure}
+
+\newpage
+
+\subsection{\ac{CIP} for \ac{HLT} section}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-103-2 Step 3-2}
+\caption{\ac{CIP} for \ac{HLT} section}
+\label{fig:step3-2}
+\end{figure}
+
+\newpage
+
+
+\subsection{Fill \ac{MLT} with \ac{CIP} solution}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-103-3 Step 3-3}
+\caption{Fill \ac{MLT} with \ac{CIP} solution}
+\label{fig:step3-3}
+\end{figure}
+
+\newpage
+
+\subsection{\ac{CIP} for \ac{MLT} section}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-103-4 Step 3-4}
+\caption{\ac{CIP} for \ac{MLT} section}
+\label{fig:step3-4}
+\end{figure}
+
+\newpage
+
+\subsection{Fill \ac{KET} with \ac{CIP} solution from \ac{HLT}}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-103-5 Step 3-5}
+\caption{Fill \ac{KET} with \ac{CIP} solution from \ac{HLT}}
+\label{fig:step3-5}
+\end{figure}
+
+\newpage
+
+\subsection{Fill \ac{KET} with \ac{CIP} solution from \ac{MLT}}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-103-6 Step 3-6}
+\caption{Fill \ac{KET} with \ac{CIP} solution from \ac{MLT}}
+\label{fig:step3-6}
+\end{figure}
+
+\newpage
+
+\subsection{Reconfigure \ac{HX} and drain piping}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-103-7 Step 3-7}
+\caption{Reconfigure \ac{HX} and drain piping}
+\label{fig:step3-7}
+\end{figure}
+
+\newpage
+
+\subsection{\ac{CIP} for \ac{KET} section}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-103-8 Step 3-8}
+\caption{\ac{CIP} for \ac{KET} section}
+\label{fig:step3-8}
+\end{figure}
+
+\newpage
+
+\subsection{\ac{CIP} drain}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-103-9 Step 3-9}
+\caption{\ac{CIP} drain}
+\label{fig:step3-9}
+\end{figure}
+
+\newpage
+
+\subsection{Open cold water}
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-103-10 Step 3-10}
+\caption{Open cold water}
+\label{fig:step3-10}
+\end{figure}
+
+\newpage
+
+\subsection{Fill \ac{HLT} with water and restart sequence}
+
+Repeat the whole \ac{CIP} process from step 3-2 to 3-9, with only water in the system.
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-103-11 Step 3-11}
+\caption{Fill \ac{HLT} with water and restart sequence}
+\label{fig:step3-11}
+\end{figure}
+
+\newpage
+
+\chapter{Mechanical design}
+
+In this chapter, diagrams and descriptions will be given of the mechanical equipment for the brewery.
+
+\section{Vessel and piping overview}
+
+An overview of the mechanical equipment is given in Figure \ref{fig:mech_overview}.
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-104-1 Mechanical overview}
+\caption{Vessel and piping}
+\label{fig:mech_overview}
+\end{figure}
+
+The first alternative for material of construction for the process vessels is \ac{HDPE}. The material is very economical, and used by many home brewers, but vessel supplier do not guarantee the operating temperatures for this process. In the food and beverage industry, \ac{SS} and silicon are the materials of choice used to maintain a food grade standard. Thus \ac{SS} vessel will be used. 
+
+For a rigid process layout \ac{SS} pipes are required, but the pipes and welding of the joint are costly. While the flow configuration is tested, plastic piping is used. Later the process will be upgraded to silicon piping.
+
+Figure \ref{fig:mech_overview} gives the location and sizes of holes required in the three vessels. Various fittings will be connected in the holes.
+
+Imperial dimensions is the industry standard for most equipment. All the equipment and instruments will have $\frac{1}{2}$ in (\SI{12.7}{\mm}) threaded nozzles. \SI{12}{\mm} piping will however be used.
+
+A single tier system will be used. This means that all the vessels are on the same level and pumps are required to transfer the process liquid. On a two or three tier system, gravity also facilitates the transfer of process liquids. The disadvantage of this approach is that the ergonomics of the system is poor, as the operator will need to step on top of a ladder to access the second or third level vessels. 
+
+\newpage
+
+\section{Control valve assembly} \label{sec:cv}
+
+Valve 01CV010 needs to be modulated to control the level of the \ac{MLT} during the sparging step. Commercial control valves are however very expensive and a cost effective solution was therefore required. A normal ball valve is used and a motor is be mounted on top of the valve, with an mounting part that was specially manufactured. An arm is inserted on the motor's rotar, which is fastened to the valve arm. 
+
+The feedback for the valve positioning is obtained with a cascade control configuration from flow meter 01FE001. The details of the flow meter and motor will be discussed in section \ref{sec:flow} and \ref{sec:motor} respectively.
+
+The torque required to turn the ball valve is \SI{488}{\newton \metre}. Two type of control motors is considered, a servo and a stepper motor. Servo motors are not cost effective at a high torque rating, but gears can however be used to increase their rating. This will  add additional cost to the valve assembly that is already being custom designed. With all the options weighed a stepper motor with a holding torque of \SI{770}{\newton \metre} was selected. It was over designed to accommodate any issues during testing and operation. The mechanical details of the valve assembly can be seen in Figure \ref{fig:mech_cv}.
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-104-2 Control valve}
+\caption{Control valve}
+\label{fig:mech_cv}
+\end{figure}
+
+\newpage
+
+\section{Probes}
+
+Two types of temperature probes was considered; the PT100 analog sensor with threaded connection and the DS18B20 digital sensor which is enclosed in a water proof thermowell. The electrical details of these sensors will be discussed in section \ref{sec:temp}.
+
+Weighing the mechanical and electrical implication of these probes, it was decided to use the DS18B20 sensor. A standard $\frac{1}{2}$ in to $\frac{3}{8}$ in fitting (UMC-0608N) was used to screw into a tee piece that is either connected to the tanks or a line. The diameter of the DS18B20 was only \SI{5}{mm} and the probe enclosure was specially manufactured to fit in the UMC-0608N fitting. 
+
+To optimise space on the vessels, the level gauge and temperature probe was connected to one tee piece. The mechanical details and assembly order of the probes can be seen in Figure \ref{fig:mech_probe}.
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-104-3 Temperature probe}
+\caption{Temperature probe}
+\label{fig:mech_probe}
+\end{figure}
+
+\newpage
+
+\section{Vessel fittings}
+
+The use of vessel fittings is not an absolute requirement. The fittings allow all the piping and heating elements to be firmly fixed. It also reduce the changes of spillage and contamination in the process.
+
+The mechanical details (pictures) and assembly order of the fittings are given in Figure \ref{fig:mech_fittings}.
+
+If an electrical urn is used, the heating element and exit valve is already in place. In the testing phase of this study, this design will be used.
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-104-4 Vessel fittings}
+\caption{Vessel fittings}
+\label{fig:mech_fittings}
+\end{figure}
+
+\newpage
+
+\section{Pumps and valves}
+
+For a \ac{HERMS}, pumps are essential to transfer process liquid. Two pumps will be required. The design of the pumping and valve system goes hand in hand. Solenoid valves are the most economical valves for open and close action. Further plastic solenoid valves are half the price of brass valves, but have a minimum operating pressure of \SI{0.21}{bar} to function.
+
+For the food and beverage industry it is recommended to use magnetically coupled pumps, as the process liquid is not in direct contact with the motor. This eliminates contamination. The most economical pumps with this function are washing machine pumps. They can accommodate the high temperature, but the amount of pressure they can deliver is not enough for the solenoid valve to open (* this needs to be verified with future tests). Higher rated, magnetically coupled, commercial beer pump are also available. 
+
+The Chugger brand of pump is one of the most economical beer pumps. It operates with \SI{240}{V} power and the electrical operation is discussed in section \ref{sec:relay}. Its pump curve is given in Figure \ref{fig:chugger}.
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./Chugger}
+\caption{Pump curve}
+\label{fig:chugger}
+\end{figure}
+
+From this figure is can be seen that the pump will deliver the required pressure for the plastic solenoid valve, if the flow rate is below \SI{24.22}{\litre \per \minute}.
+
+Weighing the option of cheaper valves versus more expensive valves. The plastic valve and Chugger pump configuration is used.
+
+\section{Heat exchangers}
+
+Heat needs to be exchanged in two areas of the brewery. The \ac{HERMS} required a heat exchange coil inside the \ac{HLT}. The material of construction is copper tubing with a diameter of \SI{10}{\mm}. \ac{SS} tubing is recommended for the future.
+
+Heat exchange in the \ac{KET} section is also required (to cool the wort after the boil process step). A heat exchange coil could once again be immersed in the \ac{KET}, but the use of an external plate exchanger is more energy efficient.
+
+\chapter{Electrical design}
+
+This chapter will cover the design of the electrical system for the brewery. This will include an overview of electrical wiring. What will follow is a discussion on the heart of the brewery, the Raspberry Pi. Finally, a detailed description of the instrumentation will be given. 
+
+\newpage
+
+\section{Overview}
+
+It must firstly be noted that electricity is very dangerous and can kill. Every precaution must be followed to design a system that is safe to build, commission and operate. 
+
+Figure \ref{fig:elect_wire} is an overview of the electrical wiring of the complete electrical system.
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-105-1 Electrical overview}
+\caption{Electrical wiring}
+\label{fig:elect_wire}
+\end{figure}
+
+The high voltage components of the system are:
+
+\begin{enumerate}
+\item Circuit breaker
+\item \ac{GFI}
+\item Dual \ac{DC} power supply
+\item \ac{SSR}
+\item Mechanical channel relay
+\item Heating elements
+\item Pumps
+\end{enumerate} 
+
+\newpage
+
+The low voltage components of the systems are:
+
+\begin{enumerate}
+\item Raspberry Pi
+\item Flow meters
+\item Temperature sensors
+\item Level sensors
+\item Solenoid valves
+\item Stepper motor
+\item Darlington transistor chip (ULN2803)
+\item Serial expander chip (MCP23017)
+\end{enumerate}
+
+All the components will be installed in a control box, for safety and mobility. 
+
+\section{Microcomputer}
+
+Hardware has been available for many years which enables the computers to receive inputs, process the response and send outputs to the outside world. In the last few years there has been a lot of progress in the development of microcomputers. These computers are lightweight, very compact, can access the internet, are well supported in the electronics community, but most importantly, they are excellent at interacting with the outside world. Table \ref{tab:altmicro} list several microcomputers currently available on the market. 
+
+\begin{table}[h!]
+\centering
+\caption{Microcomputer list}
+\begin{tabular}{p{2.5cm} p{7.5cm} p{3.5cm}}
+\toprule
+System & Tag-line & Reference \\ 
+\midrule
+Spark Core & ``Stamp-sized hackable Wi-Fi module for interacting with physical things'' & \cite{Spark2014} \\
+Cubox-i & ``The smallest computer in the world'' & \cite{SolidRun2014}\\
+Electric Imp & ``The complete solution to easily connect any device to the Internet'' & \cite{ElectricImp2014} \\
+OLinuXino & ``Open Source Hardware Boards'' & \cite{Olimex2014}\\  
+Arduino & ``An open-source electronics platform based on easy-to-use hardware and software. It's intended for anyone making interactive projects.'' & \cite{Arduino2014}\\  
+Raspberry Pi & ``Credit-card sized computer" & \cite{RaspberryPi2014}\\
+\bottomrule
+\end{tabular} 
+\label{tab:altmicro}
+\end{table}
+
+The debate on which microcomputer is the best will not be settled here. As the title suggests, it was decided to used the Raspberry Pi to operate the brewery! It was selected due to its popularity in the market, ease of use and large development community.
+
+\subsection{Raspberry Pi}
+
+The Raspberry Pi is an ARM based microcomputer. It was development as a teaching tool to inspire a new generation of engineers to create electrical systems. Its complete specification is given in Table \ref{tab:RPiSpec} and the \ac{GPIO} pin layout is given in Figure \ref{fig:RPiBoard} \citep{RaspberryPi2014}.
+
+\begin{table}[h!]
+\centering
+\caption{Raspberry Pi Model B+ specifications}
+\begin{tabular}{p{4cm} p{12cm}}
+\toprule
+Specification & Details \\ 
+\midrule
+Chip & Broadcom BCM2835 SoC \\
+Core & ARM11\\
+GPU & Dual Core VideoCore IV® Multimedia Co-Processor. Provides Open GL ES 2.0, hardware-accelerated OpenVG, and 1080p30 H.264 high-profile decode. Capable of 1Gpixel/s, 1.5Gtexel/s or 24GFLOPs with texture filtering and DMA infrastructure \\
+CPU & 700 MHz Low Power ARM1176JZFS Applications Processor \\
+Memory & 512MB SDRAM \\
+Operating System & Boots from Micro SD card, running a version of the Linux operating system \\
+Dimensions & 85 x 56 x 17mm \\
+Power & Micro USB socket 5V, 2A \\
+Ethernet & 10/100 BaseT Ethernet socket \\
+Video Output & HDMI \\
+Composite & RCA (PAL and NTSC) \\
+Audio Output & 3.5mm jack, HDMI \\
+USB & 4 x USB 2.0 Connector \\
+\ac{GPIO} Connector & 40-pin 2.54 mm (100 mil) expansion header: 2x20 strip. Providing 27 \ac{GPIO} pins as well as +3.3 V, +5 V and GND supply lines \\
+Camera Connector & 15-pin MIPI Camera Serial Interface (CSI-2) \\
+JTAG & Not populated \\
+Display Connector & Display Serial Interface (DSI) 15 way flat flex cable connector with two data lanes and a clock lane \\
+Memory Card Slot & SDIO \\
+\bottomrule
+\end{tabular} 
+\label{tab:RPiSpec}
+\end{table}
+
+The software for the Raspberry Pi, is installed on the Micro SD card. A WiFi adapter was inserted in the USB. This enabled the user to communicate wireless with the Raspberry Pi. From the 40 pins, 27 were available for \ac{GPIO} pins. This was used to drive all the relays and read the sensors.
+
+There are however not enough pins to accommodate all the inputs and outputs of the brewery. \ac{GPIO} 2 and 3 are reserved for the I2C interface. The 16 channel MCP23017 is a I2C chip, and will be used to expand the pins.
+
+\newpage
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./modelb+.png}
+\caption{Raspberry Pi Model B+ pin layout}
+\label{fig:RPiBoard}
+\end{figure}
+
+\newpage
+
+\section{High voltage system}
+
+\subsection{Power supply}
+
+In South Africa, power is supplied to domestic users at \SI{240 (220)}{V} \ac{AC} and \SI{50}{\hertz} \citep{Eskom2014} and is received from a wall socket. Each country has an its own code and should be checked accordingly.
+
+Working on a process with a fluid medium, there is always a chance that the operator can be electrocuted. Current thus needs to pass through a ground fault interpreter (GFI) first. If the current drops by more than \SI{5}{mA}, the GFI will trip the power to protect the operator. Next, to protect the electrical equipment, the current passes through a \SI{32}{\ampere} circuit breaker.
+
+Current enters the control panel and live, neutral and ground lines are connected to their respective buses.
+
+To ensure a dedicated supply of \ac{DC} power for the low voltage systems, a dual power supply is installed; it supplies \SI{12}{V} and \SI{5}{V}. The Raspberry Pi was safely supplied with \SI{5}{V} from this power supply.
+
+\subsection{Heating element}
+
+To heat the \ac{HLT} and \ac{KET}, heating elements are required; the elements will draw power from the live and neutral buses. In every live line there is a \ac{SSR} to switch the element on and off.
+
+\subsection{Relays} \label{sec:relay}
+
+The Raspberry Pi cannot control \ac{AC} devices directly and require a relay to perform this task. A mechanical channel relay, which functions with solenoids, are used to switch the pumps. A 4 channel relay is used, but  only 2 of the channels are used in this design.
+
+The heating elements need to be switched on and off more frequently and mechanical relays will wear down quickly. An \ac{SSR} is an electrical relay with no moving parts. It is already configured with triac components. A dedicated \ac{SSR} for every element is used.
+
+\section{Low voltage system}
+
+This section covers most of the instrumentation that requires low voltage to operate. Custom program scripts have been created to test every instrument.
+
+\subsection{Flow meter} \label{sec:flow}
+
+A very simple flow meter is used, which uses a pedal wheel to operate. The wheel turns faster as the flow rate increases, and the frequency in which a pulse is generated also increases. A pull up resistor is required to sense the pulses. An external resistor can be connected, but the internal pull up resistors of the Raspberry Pi was activated. Once a pulse is received, a program calculates the frequency and multiplies it by a calibration factor to give the flow rate. 
+
+\subsection{Temperature probe} \label{sec:temp}
+
+As already mentioned, both analog and digital probes where considered. The Raspberry Pi can, however, only accept digital signals. With the use of the MCP3008 I2C chip, analog signals can be converted to digital signals. With both the mechanical and electrical constraints weighted, the DS18B20 water proof sensor was selected.
+
+The DS18B20 sensor uses the 1-Wire protocol to communicate with the Raspberry Pi and needs to be connected to the \ac{GPIO} pin 4. Similar to I2C, the advantage of this protocol is that several devices can be connected to one pin.
+
+\subsection{Level sensor}
+
+Level sensing is required on the vessels for three reasons. They are needed to detect high level (pumps need to turn off to prevent over flow), low level (heating elements need to switch off to prevent damage to the elements) and the exact level position (required to maintain a level during sparging).
+
+Three level devices were considered. Firstly, a flow switch can detect the level at various heights in the vessel, when its electrical circuit is broken. This is the most basic form of level detection, but several devices will need to be installed on every vessel. It was ruled out, because the amount of holes in the vessel should be minimised.
+
+The second option is capacitance level detection. The capacitance of the fluid in the vessel can be measured to indicate the exact level in the vessel. An off-the-shelf solution that can accommodate the high temperatures of system, is not available. A custom devices needed to be build. This option is currently on hold, pending more research. The vessel design however includes glass level gauges, which means that a capacitance device can be fitted in the future.
+
+A ultrasonic sensor was the level device that was finally selected. The HC-SR04 sensor was the most economical device and could be connected to the Raspberry Pi with ease. A program would send a signal to the sensor. This will activate the sensor to send a sound wave. The wave will bounce off the nearest object and will be received by the sensor again. Once received, the signal will send an echo signal to the program. The time difference between the trigger and echo is calculated. Half of this time is multiplied by the speed of sound though air, and measured distance is obtained.
+
+The Raspberry Pi can only accept \SI{3.2}{V} signals, but the echo signal is \SI{5}{V}. This voltage was stepped down a configuration of two resistors. The ration between the resistors needed to be 0.51; \SI{120}{$\Omega$} and \SI{220}{$\Omega$} resistors is used.
+
+\subsection{Solenoid valve}
+
+A solenoid is an electrical device which moves a pin in a linear motion, from a minimum to a maximum position, or vice versa. In a valve assembly, a solenoid will constrict the flow of fluid through the valve. To protect the system, normal closed valves are used to shut down the system in an event that the valve fails. \SI{12}{V} solenoid valves are used, but the Raspberry Pi is only cable of sending an output of \SI{3.2}{V}.
+
+The ULN2803 Darlington array chip was used to step the voltage up to \SI{12}{V}. 
+
+\subsection{Stepper motor} \label{sec:motor}
+
+The operation of the valve 01CV010 is discussed in section \ref{sec:cv}. The Raspberry Pi cannot control motors directly, but the versatile ULN2803 chip facilitates this operation.
+
+Inside a stepper motor, the rotor is surrounded by an array of electro magnets. To turn the rotor, the magnets are systematically switched on and off by a program. A full stepping sequence will be used (opposed to half stepping), as it produces the most torque for the motor. To control the rotation of the motor, the program executes a sequence for a specific amount of time.
+
+\section{Control box}
+
+All the \ac{GPIO} pins of the Raspberry Pi were extended to the custom designed ``Cherry Pie circuit board'', with a ribbon cable. 40 pin ribbon cables were not readily available on the market, thus a custom cables was made. For a prototype, a stripboard with a \SI{2.54}{\mm} grid was used. The design of the first prototype circuit board can be seen in Figure \ref{fig:elect_board}.
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-105-2 Circuit board}
+\caption{Cherry Pie circuit board}
+\label{fig:elect_board}
+\end{figure}
+
+\newpage
+
+To ensure the safe operation of the overall electrical system, most of the electrical devices were enclosed in a control box. A plastic control box which is IP55 or NEMA12 rated, will protect the equipment against dust and water jets. The layout of the box is given in Figure \ref{fig:elect_box}.
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./0.01-105-3 Control box}
+\caption{Control box}
+\label{fig:elect_box}
+\end{figure}
+
+\chapter{Software design}
+
+With the mechanical and electrical systems configured, this chapter detail the software design required to control the brewery.
+
+A disclaimer, programming experience is required to configure and modify the control system. Understanding of general operating system and programming commands is assumed, and will not be explained in this chapter.
+
+\section{Operating system setup}
+
+The Raspbian operating system is a Debian-Linux distribution and has been optimised to run on the Raspberry Pi, and will be installed.
+
+To facilitate rapid development on Raspbian, either setup a \ac{SSL} or \ac{VNC} to connect the Raspberry Pi and a remote computer. A \ac{VNC} connection was chosen and to set it up, follow these steps:
+
+\begin{enumerate}
+\item configure a static IP,
+\item install the \cite{TightVNC2014} program on Rasbian and the remote computer (Windows or Java version is available) to serve a \ac{VNC},
+\item configuring the Raspbian to boot TightVNC and
+\item run TightVNC on the remote computer with the static \ac{IP}.
+\end{enumerate}
+
+\section{Control system}
+
+The implementation of a control system is the most abstract concept for most home-brewers. 
+
+The first options is to use a soft \ac{PLC} solution. \cite{Proview2014} is such a open source process control system and there is a specific distribution for the Raspberry Pi. It is beyond the scope of this design guideline to discuss the advantages of such a system.
+
+The second options is to create a custom control system to control the process. Both Python and C++ are powerful programming languages that is supported by the Raspberry Pi. It was decided to use Python for the main program. The web services will still use HTML, CSS and JavaScript (Ajax).
+
+The wheel however does not need to be completely reinvented. The third options is to use one of several home-brewing control system that has been developed for the Raspberry Pi. They are listed in Table \ref{tab:altcontrol}, however all they all fall short in the level of complexity, to control the processes described in Chapter \ref{sec:philosophy}.
+
+\begin{table}[h!]
+\centering
+\caption{Open brewing software}
+\begin{tabular}{c c c c}
+\toprule
+System & Process & Primary language & Reference \\ 
+\midrule
+Brewberry & \ac{BIAB} & JavaScript & \cite{Brewfactory2014} \\ 
+BrewPi & Fermentation & Python & \cite{BrewPi2014} \\ 
+Mashberry & \ac{HERMS} & C++ & \cite{Mashberry2014} \\ 
+RasPiBrew & \ac{HERMS} & Python & \cite{Smith2014} \\
+ \bottomrule
+\end{tabular} 
+\label{tab:altcontrol}
+\end{table}
+
+It was decided to use an exiting brewing control system; and extend it to control the \ac{HERMS} and operate it with advance process control principles. The RasPiBrew was selected as the most feasible building block for the new control system.
+
+If is worth listing other control systems, that inspired the design, in Table \ref{tab:altsystems}.
+
+\begin{table}[h!]
+\centering
+\caption{Inspired systems}
+\begin{tabular}{p{2.5cm} p{7.5cm} p{3.5cm}}
+\toprule
+System & Process & Reference \\ 
+\midrule
+BrewBot & Smart brewing appliance & \cite{BrewBot2014} \\ 
+PicoBrew & Automatic all grain beer brewing appliance & \cite{PicoBrew2014} \\
+OpenSprinkler Pi (OSPi) & Sprinkler valve control & \cite{OSPi2014} \\
+ \bottomrule
+\end{tabular} 
+\label{tab:altsystems}
+\end{table}
+
+\subsection{RaspPiBrew}
+
+The RasPiBrew system was selected as the bases to build a new control system \citep{Smith2014}. It is programmed predominately in Python and can control more brewing subsystems that the other control systems. A control panel is generated for a browser by a server script, and can be accessed remotely. A smart phone app is also available. 
+
+\newpage
+
+A screen shot of the control panel can be seen in Figure \ref{fig:ControlPanel}.
+
+\begin{figure}[h!]
+\includegraphics[width=1\linewidth]{./control_panel}
+\caption{RasPiBrew control panel}
+\label{fig:ControlPanel}
+\end{figure} 
+
+The following functions has been added to the new system:
+
+\begin{enumerate}
+\item Global brewing time counter
+\item Logging of data in csv format
+\end{enumerate}
+
+\subsection{The repository}
+
+A repository was created on Github to manage the development of all the brewing software \citep{vanHeerden2014}.
+
+The important testing scripts for the inputs and outputs are listed in Table \ref{tab:scripts}.
+
+\begin{table}[h!]
+\centering
+\caption{Testing scripts}
+\begin{tabular}{cc}
+\toprule
+Instruments & Script name\\
+\midrule
+Flow & flow.py \\
+Level & level.py \\
+Pump & relay.py \\
+Actuated valve & motor.py \\
+\bottomrule
+\end{tabular} 
+\label{tab:scripts}
+\end{table}
+
+\chapter{Process control design}
+
+This chapter will use the philosophy that was defined in Chapter \ref{sec:philosophy}, to design algorithms to effectively control the brewery.
+
+\section{Controller design}
+
+RasPiBrew uses a \acf{PID} control algorithm, that uses discrete time. The controller was tuned with the Cohen-Coon open loop method.
+
+When temperature is controlled in the vessels, the temperature is not allowed to over-shoot the set point. There is however dead time in the system which influences the response of the controller.
+
+More information to follow on \ac{PID} control, tuning methods and troubleshooting!
+
+\chapter{Recommendations} \label{sec:recommend}
+
+The primary control goal of the system was to control temperature and the overshoot issue must be addressed. There are several advanced methods that can be used to counter dead time in a system and improve the control: \acf{MPC}, \ac{IMC} and a Smith predictor.
+
+The complete sequence of process steps needs to programmed in the RaspPiBrew control system. The design functions for all the process conditions should also be programmed. The process conditions of any new recipe must be modified by these functions.
+
+A very important output has not been added to this design, is an electric stirrer. A motor must be added on top of the \ac{MLT} to facilitate mashing while stirring automatically.
+
+The capacitance level sensor needs to be created.
+
+The stepper motor valve and all the solenoid valves needs to be commissioned.
+
+More work is needed to elaborate on the steps in the control philosophy.  A detailed component list is also required.
+
+The completion of the Cherry Pie Brewery is still ambitions. The aim of this design guideline was to introduced enough concepts to inspire further development.
+
+\bibliographystyle{plainnat}
+\bibliography{References}
+
+\appendix
+
+\end{document}

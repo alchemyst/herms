@@ -1,0 +1,147 @@
+\begin{thebibliography}{23}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{Arduino}(2014)]{Arduino2014}
+{Arduino}.
+\newblock Arduino, 2014.
+\newblock URL \url{http://www.arduino.cc}.
+\newblock Accessed: 2 Septmeber 2014.
+
+\bibitem[{BrewBot}(2014)]{BrewBot2014}
+{BrewBot}.
+\newblock Brewbot, 2014.
+\newblock URL
+  \url{https://www.kickstarter.com/projects/cargo/brewbot-the-smart-brewing-appliance}.
+\newblock Accessed: 2 Septmeber 2014.
+
+\bibitem[BrewersFriend(2009)]{BrewersFriend2009}
+BrewersFriend.
+\newblock Introduction to rims and herms, 2009.
+\newblock URL \url{http://www.brewersfriend.com}.
+\newblock Accessed: 20 August 2014.
+
+\bibitem[{Brewfactory}(2014)]{Brewfactory2014}
+{Brewfactory}.
+\newblock Brewfactory, 2014.
+\newblock URL \url{http://brewfactory.org}.
+\newblock Accessed: 1 Septmeber 2014.
+
+\bibitem[{BrewPi}(2014)]{BrewPi2014}
+{BrewPi}.
+\newblock Brewpi, 2014.
+\newblock URL \url{http://www.brewpi.com}.
+\newblock Accessed: 1 Septmeber 2014.
+
+\bibitem[{Electric Imp}(2014)]{ElectricImp2014}
+{Electric Imp}.
+\newblock Electric imp, 2014.
+\newblock URL \url{http://electricimp.com}.
+\newblock Accessed: 2 Septmeber 2014.
+
+\bibitem[Eskom(2014)]{Eskom2014}
+Eskom.
+\newblock Understanding electricity, 2014.
+\newblock URL \url{http://www.eskom.co.za}.
+\newblock Accessed: 15 September 2014.
+
+\bibitem[{Mashberry}(2014)]{Mashberry2014}
+{Mashberry}.
+\newblock Mashberry, 2014.
+\newblock URL \url{http://www.sansalinux.org/en/mashberry/index.html}.
+\newblock Accessed: 1 Septmeber 2014.
+
+\bibitem[{Olimex}(2014)]{Olimex2014}
+{Olimex}.
+\newblock Olinuxino, 2014.
+\newblock URL
+  \url{https://www.olimex.com/Products/OLinuXino/open-source-hardware}.
+\newblock Accessed: 2 Septmeber 2014.
+
+\bibitem[{OpenSprinkler Pi}(2014)]{OSPi2014}
+{OpenSprinkler Pi}.
+\newblock Opensprinkler pi, 2014.
+\newblock URL \url{http://rayshobby.net/?page_id=5816}.
+\newblock Accessed: 1 Septmeber 2014.
+
+\bibitem[Palmer(2004)]{Palmer2004}
+J.J. Palmer.
+\newblock \emph{How to Brew: Everything You Need To Know To Brew Beer Right The
+  First Time}.
+\newblock Brewers Publications, 2004.
+
+\bibitem[{PicoBrew}(2014)]{PicoBrew2014}
+{PicoBrew}.
+\newblock Picobrew, 2014.
+\newblock URL \url{http://picobrew.com}.
+\newblock Accessed: 2 Septmeber 2014.
+
+\bibitem[{Proview}(2014)]{Proview2014}
+{Proview}.
+\newblock Proview, 2014.
+\newblock URL \url{http://www.proview.se/v3/}.
+\newblock Accessed: 1 Septmeber 2014.
+
+\bibitem[{Raspberry Pi Foundation}(2014)]{RaspberryPi2014}
+{Raspberry Pi Foundation}.
+\newblock Raspberry pi model b+, 2014.
+\newblock URL \url{http://www.raspberrypi.org}.
+\newblock Accessed: 5 August 2014.
+
+\bibitem[ReportLinker(2014)]{ReportLinker2014}
+ReportLinker.
+\newblock Beer industry market research and statistics, 2014.
+\newblock URL \url{http://www.reportlinker.com}.
+\newblock Accessed: 25 November 2014.
+
+\bibitem[Smith(2014)]{Smith2014}
+S~Smith.
+\newblock Raspibrew, 2014.
+\newblock URL \url{https://github.com/steve71/RasPiBrew}.
+\newblock Accessed: 2 October 2014.
+
+\bibitem[{SolidRun}(2014)]{SolidRun2014}
+{SolidRun}.
+\newblock Cubox-i, 2014.
+\newblock URL \url{http://www.solid-run.com/products/cubox-i-mini-computer}.
+\newblock Accessed: 2 Septmeber 2014.
+
+\bibitem[{Spark}(2014)]{Spark2014}
+{Spark}.
+\newblock Spark core, 2014.
+\newblock URL \url{https://www.spark.io}.
+\newblock Accessed: 2 Septmeber 2014.
+
+\bibitem[Svrcek et~al.(2000)Svrcek, Mahoney, and Young]{Svrcek2000}
+W.Y Svrcek, D.P. Mahoney, and B.R. Young.
+\newblock \emph{A real-time approach to process control}.
+\newblock Wiley, 2000.
+
+\bibitem[{The Electric Brewery}(2014)]{Electric2014}
+{The Electric Brewery}.
+\newblock Brew day: Step by step, 2014.
+\newblock URL \url{http://www.theelectricbrewery.com}.
+\newblock Accessed: 4 September 2014.
+
+\bibitem[{The History Channel}(2011)]{History2014}
+{The History Channel}.
+\newblock How beer saved the world, 2011.
+\newblock URL \url{http://www.history.co.uk}.
+\newblock Accessed: 15 September 2014.
+
+\bibitem[{TightVNC}(2014)]{TightVNC2014}
+{TightVNC}.
+\newblock Tightvnc, 2014.
+\newblock URL \url{http://www.tightvnc.com}.
+\newblock Accessed: 3 Septmeber 2014.
+
+\bibitem[van Heerden(2014)]{vanHeerden2014}
+C.W.S. van Heerden.
+\newblock Cherry pie brewery, 2014.
+\newblock URL \url{https://github.com/fugacity59/cherry-pie-brewery}.
+\newblock Accessed: 21 October 2014.
+
+\end{thebibliography}
