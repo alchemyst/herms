@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.29)  2 FEB 2015 22:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.29)  25 FEB 2015 00:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -838,7 +838,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 \c__siunitx_mathtt_int=\count183
 
-<./logo_process_700.png, id=296, 168.63pt x 40.2303pt>
+<./logo_process_700.png, id=300, 168.63pt x 40.2303pt>
 File: ./logo_process_700.png Graphic file (type png)
 
 <use ./logo_process_700.png>
@@ -852,9 +852,9 @@ Package pdftex.def Info: ./logo_process_700.png used on input line 48.
 ]
 Package acronym Info: Label `acro:HERMS' newly defined as it shall be overridde
 n
-although it is yet undefined on input line 77.
+although it is yet undefined on input line 73.
 Package acronym Info: Label `acro:PID' newly defined as it shall be overridden
-although it is yet undefined on input line 81.
+although it is yet undefined on input line 77.
  [1
 
 
@@ -902,42 +902,39 @@ although it is yet undefined on input line 3.
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.145 \chapter
+l.141 \chapter
               {Introduction} [1]
 Chapter 1.
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.155 \chapter
+l.151 \chapter
               {Process description} [2
 
 ]
 Chapter 2.
 Package acronym Info: Label `acro:RIMS' newly defined as it shall be overridden
 
-although it is yet undefined on input line 167.
+although it is yet undefined on input line 162.
+[3
 
-<./0.01-100-1 Cherry Pie Brewery P_ID.png, id=630, 1506.62875pt x 1062.97125pt>
+]
+<./0.01-100-1 Cherry Pie Brewery P_ID.png, id=641, 1506.62875pt x 1062.97125pt>
 File: ./0.01-100-1 Cherry Pie Brewery P_ID.png Graphic file (type png)
 <use ./0.01-100-1 Cherry Pie Brewery P_ID.png>
 Package pdftex.def Info: ./0.01-100-1 Cherry Pie Brewery P_ID.png used on input
- line 172.
+ line 168.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<./0.01-100-2 Auxiliaries P_ID.png, id=639, 1506.62875pt x 1062.97125pt>
+<./0.01-100-2 Auxiliaries P_ID.png, id=652, 1506.62875pt x 1062.97125pt>
 File: ./0.01-100-2 Auxiliaries P_ID.png Graphic file (type png)
 
 <use ./0.01-100-2 Auxiliaries P_ID.png>
 Package pdftex.def Info: ./0.01-100-2 Auxiliaries P_ID.png used on input line 1
-90.
+87.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
- [3
 
-]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -946,270 +943,270 @@ D.png>]
 Chapter 3.
 [6
 
-] <./ProcessStep1.png, id=677, 1083.29718pt x 542.025pt>
+] <./ProcessStep1.png, id=683, 1083.29718pt x 542.025pt>
 File: ./ProcessStep1.png Graphic file (type png)
 
 <use ./ProcessStep1.png>
-Package pdftex.def Info: ./ProcessStep1.png used on input line 247.
+Package pdftex.def Info: ./ProcessStep1.png used on input line 245.
 (pdftex.def)             Requested size: 452.9679pt x 226.63992pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 246--250
+Overfull \hbox (12.0pt too wide) in paragraph at lines 244--248
 [][]
  []
 
 [7 <./ProcessStep1.png>]
-<./0.01-101-1 Step 1-1.png, id=698, 1506.62875pt x 1062.97125pt>
+<./0.01-101-1 Step 1-1.png, id=704, 1506.62875pt x 1062.97125pt>
 File: ./0.01-101-1 Step 1-1.png Graphic file (type png)
 
 <use ./0.01-101-1 Step 1-1.png>
-Package pdftex.def Info: ./0.01-101-1 Step 1-1.png used on input line 272.
+Package pdftex.def Info: ./0.01-101-1 Step 1-1.png used on input line 270.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [8 <./0.01-101-1 Step 1-1.png>]
-<./0.01-101-2 Step 1-2.png, id=707, 1506.62875pt x 1062.97125pt>
+<./0.01-101-2 Step 1-2.png, id=713, 1506.62875pt x 1062.97125pt>
 File: ./0.01-101-2 Step 1-2.png Graphic file (type png)
 
 <use ./0.01-101-2 Step 1-2.png>
-Package pdftex.def Info: ./0.01-101-2 Step 1-2.png used on input line 298.
+Package pdftex.def Info: ./0.01-101-2 Step 1-2.png used on input line 296.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [9 <./0.01-101-2 Step 1-2.png>]
-<./0.01-101-3 Step 1-3.png, id=719, 1506.62875pt x 1062.97125pt>
+<./0.01-101-3 Step 1-3.png, id=726, 1506.62875pt x 1062.97125pt>
 File: ./0.01-101-3 Step 1-3.png Graphic file (type png)
 
 <use ./0.01-101-3 Step 1-3.png>
-Package pdftex.def Info: ./0.01-101-3 Step 1-3.png used on input line 324.
+Package pdftex.def Info: ./0.01-101-3 Step 1-3.png used on input line 322.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [10 <./0.01-101-3 Step 1-3.png>]
-<./0.01-101-4 Step 1-4.png, id=730, 1506.62875pt x 1062.97125pt>
+<./0.01-101-4 Step 1-4.png, id=736, 1506.62875pt x 1062.97125pt>
 File: ./0.01-101-4 Step 1-4.png Graphic file (type png)
 
 <use ./0.01-101-4 Step 1-4.png>
-Package pdftex.def Info: ./0.01-101-4 Step 1-4.png used on input line 350.
+Package pdftex.def Info: ./0.01-101-4 Step 1-4.png used on input line 348.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [11 <./0.01-101-4 Step 1-4.png>]
-<./0.01-101-5 Step 1-5.png, id=746, 1506.62875pt x 1062.97125pt>
+<./0.01-101-5 Step 1-5.png, id=752, 1506.62875pt x 1062.97125pt>
 File: ./0.01-101-5 Step 1-5.png Graphic file (type png)
 
 <use ./0.01-101-5 Step 1-5.png>
-Package pdftex.def Info: ./0.01-101-5 Step 1-5.png used on input line 376.
+Package pdftex.def Info: ./0.01-101-5 Step 1-5.png used on input line 374.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [12 <./0.01-101-5 Step 1-5.png>]
-<./0.01-101-6 Step 1-6.png, id=758, 1506.62875pt x 1062.97125pt>
+<./0.01-101-6 Step 1-6.png, id=764, 1506.62875pt x 1062.97125pt>
 File: ./0.01-101-6 Step 1-6.png Graphic file (type png)
 
 <use ./0.01-101-6 Step 1-6.png>
-Package pdftex.def Info: ./0.01-101-6 Step 1-6.png used on input line 401.
+Package pdftex.def Info: ./0.01-101-6 Step 1-6.png used on input line 399.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [13 <./0.01-101-6 Step 1-6.png>]
-<./0.01-101-7 Step 1-7.png, id=766, 1506.62875pt x 1062.97125pt>
+<./0.01-101-7 Step 1-7.png, id=772, 1506.62875pt x 1062.97125pt>
 File: ./0.01-101-7 Step 1-7.png Graphic file (type png)
 
 <use ./0.01-101-7 Step 1-7.png>
-Package pdftex.def Info: ./0.01-101-7 Step 1-7.png used on input line 426.
+Package pdftex.def Info: ./0.01-101-7 Step 1-7.png used on input line 424.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [14 <./0.01-101-7 Step 1-7.png>]
-<./0.01-101-8 Step 1-8.png, id=774, 1506.62875pt x 1062.97125pt>
+<./0.01-101-8 Step 1-8.png, id=780, 1506.62875pt x 1062.97125pt>
 File: ./0.01-101-8 Step 1-8.png Graphic file (type png)
 
 <use ./0.01-101-8 Step 1-8.png>
-Package pdftex.def Info: ./0.01-101-8 Step 1-8.png used on input line 451.
+Package pdftex.def Info: ./0.01-101-8 Step 1-8.png used on input line 449.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [15 <./0.01-101-8 Step 1-8.png>]
-<./0.01-101-9 Step 1-9.png, id=790, 1506.62875pt x 1062.97125pt>
+<./0.01-101-9 Step 1-9.png, id=796, 1506.62875pt x 1062.97125pt>
 File: ./0.01-101-9 Step 1-9.png Graphic file (type png)
 
 <use ./0.01-101-9 Step 1-9.png>
-Package pdftex.def Info: ./0.01-101-9 Step 1-9.png used on input line 481.
+Package pdftex.def Info: ./0.01-101-9 Step 1-9.png used on input line 479.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [16 <./0.01-101-9 Step 1-9.png>]
-<./0.01-101-10 Step 1-10.png, id=799, 1506.62875pt x 1062.97125pt>
+<./0.01-101-10 Step 1-10.png, id=805, 1506.62875pt x 1062.97125pt>
 File: ./0.01-101-10 Step 1-10.png Graphic file (type png)
 
 <use ./0.01-101-10 Step 1-10.png>
-Package pdftex.def Info: ./0.01-101-10 Step 1-10.png used on input line 507.
+Package pdftex.def Info: ./0.01-101-10 Step 1-10.png used on input line 505.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [17 <./0.01-101-10 Step 1-10.png>]
-<./0.01-101-11 Step 1-11.png, id=807, 1506.62875pt x 1062.97125pt>
+<./0.01-101-11 Step 1-11.png, id=813, 1506.62875pt x 1062.97125pt>
 File: ./0.01-101-11 Step 1-11.png Graphic file (type png)
 
 <use ./0.01-101-11 Step 1-11.png>
-Package pdftex.def Info: ./0.01-101-11 Step 1-11.png used on input line 533.
+Package pdftex.def Info: ./0.01-101-11 Step 1-11.png used on input line 531.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [18 <./0.01-101-11 Step 1-11.png>]
-<./0.01-101-12 Step 1-12.png, id=818, 1506.62875pt x 1062.97125pt>
+<./0.01-101-12 Step 1-12.png, id=824, 1506.62875pt x 1062.97125pt>
 File: ./0.01-101-12 Step 1-12.png Graphic file (type png)
 
 <use ./0.01-101-12 Step 1-12.png>
-Package pdftex.def Info: ./0.01-101-12 Step 1-12.png used on input line 558.
+Package pdftex.def Info: ./0.01-101-12 Step 1-12.png used on input line 556.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [19 <./0.01-101-12 Step 1-12.png>] [20]
-<./0.01-102-1 Step 2-1.png, id=838, 1506.62875pt x 1062.97125pt>
+<./0.01-102-1 Step 2-1.png, id=844, 1506.62875pt x 1062.97125pt>
 File: ./0.01-102-1 Step 2-1.png Graphic file (type png)
 
 <use ./0.01-102-1 Step 2-1.png>
-Package pdftex.def Info: ./0.01-102-1 Step 2-1.png used on input line 594.
+Package pdftex.def Info: ./0.01-102-1 Step 2-1.png used on input line 592.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [21 <./0.01-102-1 Step 2-1.png>]
-<./0.01-102-2 Step 2-2.png, id=846, 1506.62875pt x 1062.97125pt>
+<./0.01-102-2 Step 2-2.png, id=852, 1506.62875pt x 1062.97125pt>
 File: ./0.01-102-2 Step 2-2.png Graphic file (type png)
 
 <use ./0.01-102-2 Step 2-2.png>
-Package pdftex.def Info: ./0.01-102-2 Step 2-2.png used on input line 616.
+Package pdftex.def Info: ./0.01-102-2 Step 2-2.png used on input line 614.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [22 <./0.01-102-2 Step 2-2.png>]
-<./0.01-102-3 Step 2-3.png, id=853, 1506.62875pt x 1062.97125pt>
+<./0.01-102-3 Step 2-3.png, id=859, 1506.62875pt x 1062.97125pt>
 File: ./0.01-102-3 Step 2-3.png Graphic file (type png)
 
 <use ./0.01-102-3 Step 2-3.png>
-Package pdftex.def Info: ./0.01-102-3 Step 2-3.png used on input line 638.
+Package pdftex.def Info: ./0.01-102-3 Step 2-3.png used on input line 636.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [23 <./0.01-102-3 Step 2-3.png>]
-<./0.01-102-4 Step 2-4.png, id=860, 1506.62875pt x 1062.97125pt>
+<./0.01-102-4 Step 2-4.png, id=866, 1506.62875pt x 1062.97125pt>
 File: ./0.01-102-4 Step 2-4.png Graphic file (type png)
 
 <use ./0.01-102-4 Step 2-4.png>
-Package pdftex.def Info: ./0.01-102-4 Step 2-4.png used on input line 660.
+Package pdftex.def Info: ./0.01-102-4 Step 2-4.png used on input line 658.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [24 <./0.01-102-4 Step 2-4.png>]
-<./0.01-102-5 Step 2-5.png, id=867, 1506.62875pt x 1062.97125pt>
+<./0.01-102-5 Step 2-5.png, id=873, 1506.62875pt x 1062.97125pt>
 File: ./0.01-102-5 Step 2-5.png Graphic file (type png)
 
 <use ./0.01-102-5 Step 2-5.png>
-Package pdftex.def Info: ./0.01-102-5 Step 2-5.png used on input line 683.
+Package pdftex.def Info: ./0.01-102-5 Step 2-5.png used on input line 681.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [25 <./0.01-102-5 Step 2-5.png>]
-<./ProcessStep3.png, id=895, 1083.29718pt x 542.025pt>
+<./ProcessStep3.png, id=901, 1083.29718pt x 542.025pt>
 File: ./ProcessStep3.png Graphic file (type png)
 
 <use ./ProcessStep3.png>
-Package pdftex.def Info: ./ProcessStep3.png used on input line 713.
+Package pdftex.def Info: ./ProcessStep3.png used on input line 711.
 (pdftex.def)             Requested size: 452.9679pt x 226.63992pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 712--716
+Overfull \hbox (12.0pt too wide) in paragraph at lines 710--714
 [][]
  []
 
 [26 <./ProcessStep3.png>]
-<./0.01-103-1 Step 3-1.png, id=914, 1506.62875pt x 1062.97125pt>
+<./0.01-103-1 Step 3-1.png, id=920, 1506.62875pt x 1062.97125pt>
 File: ./0.01-103-1 Step 3-1.png Graphic file (type png)
 
 <use ./0.01-103-1 Step 3-1.png>
-Package pdftex.def Info: ./0.01-103-1 Step 3-1.png used on input line 725.
+Package pdftex.def Info: ./0.01-103-1 Step 3-1.png used on input line 723.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [27 <./0.01-103-1 Step 3-1.png>]
-<./0.01-103-2 Step 3-2.png, id=926, 1506.62875pt x 1062.97125pt>
+<./0.01-103-2 Step 3-2.png, id=932, 1506.62875pt x 1062.97125pt>
 File: ./0.01-103-2 Step 3-2.png Graphic file (type png)
 
 <use ./0.01-103-2 Step 3-2.png>
-Package pdftex.def Info: ./0.01-103-2 Step 3-2.png used on input line 735.
+Package pdftex.def Info: ./0.01-103-2 Step 3-2.png used on input line 733.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [28 <./0.01-103-2 Step 3-2.png>]
-<./0.01-103-3 Step 3-3.png, id=937, 1506.62875pt x 1062.97125pt>
+<./0.01-103-3 Step 3-3.png, id=944, 1506.62875pt x 1062.97125pt>
 File: ./0.01-103-3 Step 3-3.png Graphic file (type png)
 
 <use ./0.01-103-3 Step 3-3.png>
-Package pdftex.def Info: ./0.01-103-3 Step 3-3.png used on input line 746.
+Package pdftex.def Info: ./0.01-103-3 Step 3-3.png used on input line 744.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [29 <./0.01-103-3 Step 3-3.png>]
-<./0.01-103-4 Step 3-4.png, id=949, 1506.62875pt x 1062.97125pt>
+<./0.01-103-4 Step 3-4.png, id=955, 1506.62875pt x 1062.97125pt>
 File: ./0.01-103-4 Step 3-4.png Graphic file (type png)
 
 <use ./0.01-103-4 Step 3-4.png>
-Package pdftex.def Info: ./0.01-103-4 Step 3-4.png used on input line 756.
+Package pdftex.def Info: ./0.01-103-4 Step 3-4.png used on input line 754.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [30 <./0.01-103-4 Step 3-4.png>]
-<./0.01-103-5 Step 3-5.png, id=961, 1506.62875pt x 1062.97125pt>
+<./0.01-103-5 Step 3-5.png, id=967, 1506.62875pt x 1062.97125pt>
 File: ./0.01-103-5 Step 3-5.png Graphic file (type png)
 
 <use ./0.01-103-5 Step 3-5.png>
-Package pdftex.def Info: ./0.01-103-5 Step 3-5.png used on input line 766.
+Package pdftex.def Info: ./0.01-103-5 Step 3-5.png used on input line 764.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [31 <./0.01-103-5 Step 3-5.png>]
-<./0.01-103-6 Step 3-6.png, id=975, 1506.62875pt x 1062.97125pt>
+<./0.01-103-6 Step 3-6.png, id=981, 1506.62875pt x 1062.97125pt>
 File: ./0.01-103-6 Step 3-6.png Graphic file (type png)
 
 <use ./0.01-103-6 Step 3-6.png>
-Package pdftex.def Info: ./0.01-103-6 Step 3-6.png used on input line 776.
+Package pdftex.def Info: ./0.01-103-6 Step 3-6.png used on input line 774.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [32 <./0.01-103-6 Step 3-6.png>]
-<./0.01-103-7 Step 3-7.png, id=987, 1506.62875pt x 1062.97125pt>
+<./0.01-103-7 Step 3-7.png, id=993, 1506.62875pt x 1062.97125pt>
 File: ./0.01-103-7 Step 3-7.png Graphic file (type png)
 
 <use ./0.01-103-7 Step 3-7.png>
-Package pdftex.def Info: ./0.01-103-7 Step 3-7.png used on input line 786.
+Package pdftex.def Info: ./0.01-103-7 Step 3-7.png used on input line 784.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [33 <./0.01-103-7 Step 3-7.png>]
-<./0.01-103-8 Step 3-8.png, id=997, 1506.62875pt x 1062.97125pt>
+<./0.01-103-8 Step 3-8.png, id=1003, 1506.62875pt x 1062.97125pt>
 File: ./0.01-103-8 Step 3-8.png Graphic file (type png)
 
 <use ./0.01-103-8 Step 3-8.png>
-Package pdftex.def Info: ./0.01-103-8 Step 3-8.png used on input line 796.
+Package pdftex.def Info: ./0.01-103-8 Step 3-8.png used on input line 794.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [34 <./0.01-103-8 Step 3-8.png>]
-<./0.01-103-9 Step 3-9.png, id=1007, 1506.62875pt x 1062.97125pt>
+<./0.01-103-9 Step 3-9.png, id=1013, 1506.62875pt x 1062.97125pt>
 File: ./0.01-103-9 Step 3-9.png Graphic file (type png)
 
 <use ./0.01-103-9 Step 3-9.png>
-Package pdftex.def Info: ./0.01-103-9 Step 3-9.png used on input line 806.
+Package pdftex.def Info: ./0.01-103-9 Step 3-9.png used on input line 804.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [35 <./0.01-103-9 Step 3-9.png>]
-<./0.01-103-10 Step 3-10.png, id=1014, 1506.62875pt x 1062.97125pt>
+<./0.01-103-10 Step 3-10.png, id=1020, 1506.62875pt x 1062.97125pt>
 File: ./0.01-103-10 Step 3-10.png Graphic file (type png)
 
 <use ./0.01-103-10 Step 3-10.png>
-Package pdftex.def Info: ./0.01-103-10 Step 3-10.png used on input line 816.
+Package pdftex.def Info: ./0.01-103-10 Step 3-10.png used on input line 814.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [36 <./0.01-103-10 Step 3-10.png>]
-<./0.01-103-11 Step 3-11.png, id=1021, 1506.62875pt x 1062.97125pt>
+<./0.01-103-11 Step 3-11.png, id=1027, 1506.62875pt x 1062.97125pt>
 File: ./0.01-103-11 Step 3-11.png Graphic file (type png)
 
 <use ./0.01-103-11 Step 3-11.png>
-Package pdftex.def Info: ./0.01-103-11 Step 3-11.png used on input line 828.
+Package pdftex.def Info: ./0.01-103-11 Step 3-11.png used on input line 826.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [37 <./0.01-103-11 Step 3-11.png>]
 Chapter 4.
-<./0.01-104-1 Mechanical overview.png, id=1029, 1506.62875pt x 1062.97125pt>
+<./0.01-104-1 Mechanical overview.png, id=1035, 1506.62875pt x 1062.97125pt>
 File: ./0.01-104-1 Mechanical overview.png Graphic file (type png)
 
 <use ./0.01-104-1 Mechanical overview.png>
 Package pdftex.def Info: ./0.01-104-1 Mechanical overview.png used on input lin
-e 844.
+e 842.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
 Package acronym Info: Label `acro:HDPE' newly defined as it shall be overridden
 
-although it is yet undefined on input line 849.
+although it is yet undefined on input line 847.
 Package acronym Info: Label `acro:SS' newly defined as it shall be overridden
-although it is yet undefined on input line 849.
+although it is yet undefined on input line 847.
  [38
 
  <./0.01-104-1 Mechanical overview.png>] [39]
-<./0.01-104-2 Control valve.png, id=1051, 1506.62875pt x 1062.97125pt>
+<./0.01-104-2 Control valve.png, id=1057, 1506.62875pt x 1062.97125pt>
 File: ./0.01-104-2 Control valve.png Graphic file (type png)
 
 <use ./0.01-104-2 Control valve.png>
-Package pdftex.def Info: ./0.01-104-2 Control valve.png used on input line 870.
+Package pdftex.def Info: ./0.01-104-2 Control valve.png used on input line 868.
 
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [40 <./0.01-104-2 Control valve.png>]
-<./0.01-104-3 Temperature probe.png, id=1058, 1506.62875pt x 1062.97125pt>
+<./0.01-104-3 Temperature probe.png, id=1065, 1506.62875pt x 1062.97125pt>
 File: ./0.01-104-3 Temperature probe.png Graphic file (type png)
 
 <use ./0.01-104-3 Temperature probe.png>
 Package pdftex.def Info: ./0.01-104-3 Temperature probe.png used on input line 
-886.
+884.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [41 <./0.01-104-3 Temperature probe.png>] <./0.01-104-4 Vessel fittings.png, i
-d=1065, 1506.62875pt x 1062.97125pt>
+d=1071, 1506.62875pt x 1062.97125pt>
 File: ./0.01-104-4 Vessel fittings.png Graphic file (type png)
 
 <use ./0.01-104-4 Vessel fittings.png>
 Package pdftex.def Info: ./0.01-104-4 Vessel fittings.png used on input line 90
-2.
+0.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [42 <./0.01-104-4 Vessel fittings.png>]
-<./Chugger.png, id=1073, 414.79968pt x 273.27094pt>
+<./Chugger.png, id=1079, 414.79968pt x 273.27094pt>
 File: ./Chugger.png Graphic file (type png)
  <use ./Chugger.png>
-Package pdftex.def Info: ./Chugger.png used on input line 918.
+Package pdftex.def Info: ./Chugger.png used on input line 916.
 (pdftex.def)             Requested size: 452.9679pt x 298.42648pt.
 
 [43 <./Chugger.png>] [44]
@@ -1217,96 +1214,96 @@ Chapter 5.
 [45
 
 ]
-<./0.01-105-1 Electrical overview.png, id=1093, 1506.62875pt x 1062.97125pt>
+<./0.01-105-1 Electrical overview.png, id=1099, 1506.62875pt x 1062.97125pt>
 File: ./0.01-105-1 Electrical overview.png Graphic file (type png)
 
 <use ./0.01-105-1 Electrical overview.png>
 Package pdftex.def Info: ./0.01-105-1 Electrical overview.png used on input lin
-e 946.
+e 944.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
 Package acronym Info: Label `acro:GFI' newly defined as it shall be overridden
-although it is yet undefined on input line 955.
+although it is yet undefined on input line 953.
 Package acronym Info: Label `acro:DC' newly defined as it shall be overridden
-although it is yet undefined on input line 956.
+although it is yet undefined on input line 954.
 Package acronym Info: Label `acro:SSR' newly defined as it shall be overridden
-although it is yet undefined on input line 957.
+although it is yet undefined on input line 955.
  [46 <./0.01-105-1 Electrical overview.png>]
-Underfull \hbox (badness 5490) in paragraph at lines 995--995
+Underfull \hbox (badness 5490) in paragraph at lines 993--993
 []|\OT1/cmr/m/n/12 ``An open-source elec-tron-ics plat-form
  []
 
 Package acronym Info: Label `acro:GPIO' newly defined as it shall be overridden
 
-although it is yet undefined on input line 1006.
+although it is yet undefined on input line 1004.
 [47]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 1017
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 1015
 .
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1017.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1015.
 
 
-Overfull \hbox (26.27618pt too wide) in paragraph at lines 1011--1036
+Overfull \hbox (26.27618pt too wide) in paragraph at lines 1009--1034
  [][] 
  []
 
-[48] <./modelb+.png, id=1160, 490.83376pt x 437.38406pt>
+[48] <./modelb+.png, id=1166, 490.83376pt x 437.38406pt>
 File: ./modelb+.png Graphic file (type png)
  <use ./modelb+.png>
-Package pdftex.def Info: ./modelb+.png used on input line 1045.
+Package pdftex.def Info: ./modelb+.png used on input line 1043.
 (pdftex.def)             Requested size: 452.9679pt x 403.65291pt.
 
 [49 <./modelb+.png>]
 Package acronym Info: Label `acro:AC' newly defined as it shall be overridden
-although it is yet undefined on input line 1056.
+although it is yet undefined on input line 1054.
  [50] [51]
-<./0.01-105-2 Circuit board.png, id=1192, 1506.62875pt x 1062.97125pt>
+<./0.01-105-2 Circuit board.png, id=1198, 1506.62875pt x 1062.97125pt>
 File: ./0.01-105-2 Circuit board.png Graphic file (type png)
 
 <use ./0.01-105-2 Circuit board.png>
-Package pdftex.def Info: ./0.01-105-2 Circuit board.png used on input line 1117
+Package pdftex.def Info: ./0.01-105-2 Circuit board.png used on input line 1115
 .
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [52 <./0.01-105-2 Circuit board.png>]
-<./0.01-105-3 Control box.png, id=1198, 1506.62875pt x 1062.97125pt>
+<./0.01-105-3 Control box.png, id=1204, 1506.62875pt x 1062.97125pt>
 File: ./0.01-105-3 Control box.png Graphic file (type png)
 
 <use ./0.01-105-3 Control box.png>
-Package pdftex.def Info: ./0.01-105-3 Control box.png used on input line 1127.
+Package pdftex.def Info: ./0.01-105-3 Control box.png used on input line 1125.
 (pdftex.def)             Requested size: 452.9679pt x 319.57506pt.
  [53 <./0.01-105-3 Control box.png>]
 Chapter 6.
 Package acronym Info: Label `acro:SSL' newly defined as it shall be overridden
-although it is yet undefined on input line 1142.
+although it is yet undefined on input line 1140.
 Package acronym Info: Label `acro:VNC' newly defined as it shall be overridden
-although it is yet undefined on input line 1142.
+although it is yet undefined on input line 1140.
 Package acronym Info: Label `acro:IP' newly defined as it shall be overridden
-although it is yet undefined on input line 1148.
+although it is yet undefined on input line 1146.
 Package acronym Info: Label `acro:PLC' newly defined as it shall be overridden
-although it is yet undefined on input line 1155.
+although it is yet undefined on input line 1153.
 [54
 
 ]
 Package acronym Info: Label `acro:BIAB' newly defined as it shall be overridden
 
-although it is yet undefined on input line 1168.
+although it is yet undefined on input line 1166.
 
-Overfull \hbox (3.28401pt too wide) in paragraph at lines 1190--1190
+Overfull \hbox (3.28401pt too wide) in paragraph at lines 1188--1188
 []|\OT1/cmr/m/n/12 OpenSprinkler
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1190--1191
+Underfull \hbox (badness 10000) in paragraph at lines 1188--1189
 []|[]\OT1/cmr/m/n/12 OpenSprinkler Pi[]
  []
 
-[55] <./control_panel.png, id=1265, 895.09406pt x 448.67625pt>
+[55] <./control_panel.png, id=1271, 895.09406pt x 448.67625pt>
 File: ./control_panel.png Graphic file (type png)
 
 <use ./control_panel.png>
-Package pdftex.def Info: ./control_panel.png used on input line 1205.
+Package pdftex.def Info: ./control_panel.png used on input line 1203.
 (pdftex.def)             Requested size: 452.9679pt x 227.06238pt.
  [56 <./control_panel.png>]
 Chapter 7.
@@ -1315,9 +1312,9 @@ Chapter 7.
 ]
 Chapter 8.
 Package acronym Info: Label `acro:MPC' newly defined as it shall be overridden
-although it is yet undefined on input line 1253.
+although it is yet undefined on input line 1251.
 Package acronym Info: Label `acro:IMC' newly defined as it shall be overridden
-although it is yet undefined on input line 1253.
+although it is yet undefined on input line 1251.
 (./Micro-brewery control strategy for the Raspberry Pi using a HERMS.bbl
 [58
 
@@ -1349,24 +1346,27 @@ Underfull \hbox (badness 2005) in paragraph at lines 124--128
 ]$http : / / www .
  []
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1272.
- [60]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1272.
+) [60]
+Appendix A.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1274.
+[61
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1274.
  (./Micro-brewery control strategy for the Raspberry Pi using a HERMS.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1272.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1272.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1274.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1274.
 
 Package rerunfilecheck Info: File `"Micro-brewery control strategy for the Rasp
 berry Pi using a HERMS".out' has not changed.
-(rerunfilecheck)             Checksum: 7798E4A007DFA3248E8896213ACACE06;4686.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1272.
+(rerunfilecheck)             Checksum: E6E9273EDFD67A547F809E0EC3902F03;4727.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1274.
  ) 
 Here is how much of TeX's memory you used:
- 17266 strings out of 495028
- 330359 string characters out of 6181497
+ 17270 strings out of 495028
+ 330395 string characters out of 6181497
  358214 words of memory out of 5000000
- 19884 multiletter control sequences out of 15000+600000
+ 19885 multiletter control sequences out of 15000+600000
  14181 words of font info for 54 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  39i,15n,38p,10480b,947s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1380,10 +1380,10 @@ onts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts
 /public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmti12.pfb>
 Output written on "Micro-brewery control strategy for the Raspberry Pi using a 
-HERMS.pdf" (70 pages, 4522285 bytes).
+HERMS.pdf" (71 pages, 4521201 bytes).
 PDF statistics:
- 1440 PDF objects out of 1440 (max. 8388607)
- 1270 compressed objects within 13 object streams
- 340 named destinations out of 1000 (max. 500000)
- 800 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1452 PDF objects out of 1728 (max. 8388607)
+ 1281 compressed objects within 13 object streams
+ 343 named destinations out of 1000 (max. 500000)
+ 808 words of extra memory for PDF output out of 10000 (max. 10000000)
 

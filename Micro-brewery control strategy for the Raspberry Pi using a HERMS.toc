@@ -71,3 +71,4 @@
 \contentsline {section}{\numberline {7.1}Controller design}{57}{section.7.1}
 \contentsline {chapter}{\numberline {8}Recommendations}{58}{chapter.8}
 \contentsline {chapter}{\numberline {9}References}{59}{chapter.9}
+\contentsline {chapter}{\numberline {A}Cost}{61}{appendix.A}

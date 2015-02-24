@@ -1,3 +1,46 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: Micro-brewery control strategy for the Raspberry Pi using a HERMS.aux
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Micro-brewery control strategy for the Raspberry Pi using a HERMS.aux
 The style file: plainnat.bst
 Database file #1: References.bib
+You've used 23 entries,
+            2773 wiz_defined-function locations,
+            723 strings with 7233 characters,
+and the built_in function-call counts, 7158 in all, are:
+= -- 640
+> -- 250
+< -- 22
++ -- 98
+- -- 75
+* -- 366
+:= -- 1111
+add.period$ -- 90
+call.type$ -- 23
+change.case$ -- 92
+chr.to.int$ -- 23
+cite$ -- 46
+duplicate$ -- 356
+empty$ -- 738
+format.name$ -- 98
+if$ -- 1531
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 4
+newline$ -- 144
+num.names$ -- 92
+pop$ -- 279
+preamble$ -- 1
+purify$ -- 71
+quote$ -- 0
+skip$ -- 300
+stack$ -- 0
+substring$ -- 46
+swap$ -- 23
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 243
+warning$ -- 0
+while$ -- 69
+width$ -- 0
+write$ -- 325

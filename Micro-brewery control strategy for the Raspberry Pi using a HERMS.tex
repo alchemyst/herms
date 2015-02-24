@@ -47,21 +47,17 @@
 \vspace{8mm}
 \includegraphics[width=0.7\linewidth]{./logo_process_700}
 \vspace{6mm} \linebreak
-{\Large \bf Heerden Process Engineering \\ South Africa \\ Version 0.1 \\ 2015 \\}
+{\Large \bf Heerden Process Engineering \\ South Africa \\ Version 0.2 \\ 2015 \\}
 \end{center}
 \vfill
-
+% Open to suggestions on contribution and acknowledgment
 \clearpage
 
 \thispagestyle{empty}
 
 This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 
-Should you wish to redistribute verbatim copies of this work, attribute me as follow: {\it This material was created by Schalk van Heerden and published freely under a Creative Commons Attribution license at \url{http://heerden.co.za}.}
-
-Should you wish to redistribute revised or remixed versions of this work, attribute me as follow: {\it This material is based on original writing by Schalk van Heerden, which was published freely under a Creative Commons Attribution license at \url{http://heerden.co.za}.}
-
-If you would like to attribute me differently, contact me.
+Find the latest version of the document at \url{heerden.co.za}. % Website to be updated as soon as revision 1.0 is reached.
 
 \clearpage
 
@@ -154,37 +150,38 @@ In order to explain the control strategy in more detail, the control philosophy 
 
 \chapter{Process description}
 
-This chapter will give a general description of the brewing process, with a focus on the sugar extraction process.
+This chapter will give a general description of the brewing processes. It involves three systems. The sugar extraction, fermentation and an auxiliary system.  
 
 It is beyond the scope to describe the scientific details of every brewing process and therefore resources such as \citet{Palmer2004} should be consulted.
 
 The brewery will use batch processes and all its steps will be fully automated. Once raw materials are added, the controller will take charge of the whole operation until the final product (beer) is in a keg. Manual steps, like adding the raw material at specific time intervals, are however still required.
 
 \section{Sugar extraction}
+% Propose a new system name?
 
-Get a new name for this section.
-
-Heat is required in a \ac{MLT} vessel to covert the grain to sugar, in a process called mashing; the product is called the wort. It is essential to control the temperature of this process to ensure that the correct enzymes are activated, which will release the required sugars. There are several methods to achieve optimal temperature control in a micro-brewery process. The two prominent processes are \ac{RIMS} and \acf{HERMS}. In both processes, the wort is recirculated with a pump through the \ac{MLT} and an heat exchange device. \ac{RIMS} uses an electric heater inline with the recirculation system. \ac{HERMS} uses a heat exchange coil that is submerged in a \ac{HLT}. The wort is then recirculated through the coil. This design will use a \ac{HERMS}, as it is more energy and equipment efficient \citep{BrewersFriend2009}.
+Heat is required in a \acf{MLT} vessel to covert the grain to sugar, in a process called mashing; the product is called the wort. It is essential to control the temperature of this process to ensure that the correct enzymes are activated, which will release the required sugars. There are several methods to achieve optimal temperature control in a micro-brewery process. The two prominent processes are \ac{RIMS} and \acf{HERMS}. In both processes, the wort is recirculated with a pump through the \ac{MLT} and an heat exchange device. \ac{RIMS} uses an electric heater inline with the recirculation system. \ac{HERMS} uses a heat exchange coil that is submerged in a \acf{HLT}. The wort is then recirculated through the coil. This design will use a \ac{HERMS}, as it is more energy and equipment efficient \citep{BrewersFriend2009}.
 
 A piping and instrumentation diagram of the brewery is given in Figure \ref{fig:main_pid}.
 
+\newpage
 \begin{figure}[h!]
 \includegraphics[width=1\linewidth]{./0.01-100-1 Cherry Pie Brewery P_ID}
 \caption{Brewery \ac{PaID}}
 \label{fig:main_pid}
 \end{figure}
+% A bypass valve (01CV004) has been placed over 01CV008 on the main P&ID, because the solenoid valves act as check valves. The control philosophy diagrams still needs to be updated.
 
-The third vessel used is the \ac{KET}. It is used to preheat the water for mashing and finally to boil the wort. The hops is also added in this vessel.
+The third vessel used is the \acf{KET}. It is used to preheat the water for mashing and finally to boil the wort. The hops is also added in this vessel.
 
 If the production capacity of the brewery is 1, the ideal ration of vessel volumes for the \ac{HLT}, \ac{MLT} and \ac{KET} is 2:0.8:1.5 \citep{Electric2014}.
 
 \section{Fermentation}
 
-
+After the wort is prepared and cooled, it is transferred to a the \acf{FER} situated inside a refrigeration unit. This controls the temperature of the fermentation process.
 
 \section{Auxiliaries}
 
-
+The auxiliary system consists of milling process a that supports the sugar extraction process. The system is represented by the diagram in Figure \ref{fig:aux_pid}.
 
 \begin{figure}[h!]
 \includegraphics[width=1\linewidth]{./0.01-100-2 Auxiliaries P_ID}
@@ -192,13 +189,14 @@ If the production capacity of the brewery is 1, the ideal ration of vessel volum
 \label{fig:aux_pid}
 \end{figure}
 
-In the next chapter, the complete control philosophy will be given for the \ac{HERMS}, fermentation process and a \ac{CIP} process.
+In the next chapter, the complete control philosophy will be given for the \ac{HERMS}, fermentation process and a \acf{CIP} process.
 
 \chapter{Control philosophy} \label{sec:philosophy}
 
 The control philosophy will identify the important control objectives in every step and the instruments that is required. The three major process steps are:
 
 \begin{enumerate}
+\item Milling
 \item \ac{HERMS}
 \item Fermentation
 \item \ac{CIP}
@@ -1268,5 +1266,9 @@ The completion of the Cherry Pie Brewery is still ambitions. The aim of this des
 \bibliography{References}
 
 \appendix
+
+\chapter{Cost}
+
+Equipment cost estimate to be provided in next minor revision.
 
 \end{document}
